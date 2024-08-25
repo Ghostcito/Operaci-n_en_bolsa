@@ -28,3 +28,4 @@ D:\Administrador\ASP\Operación_en_bolsa\obj\Debug\net8.0\refint\Operación_en_b
 D:\Administrador\ASP\Operación_en_bolsa\obj\Debug\net8.0\Operación_en_bolsa.pdb
 D:\Administrador\ASP\Operación_en_bolsa\obj\Debug\net8.0\Operación_en_bolsa.genruntimeconfig.cache
 D:\Administrador\ASP\Operación_en_bolsa\obj\Debug\net8.0\ref\Operación_en_bolsa.dll
+D:\Administrador\ASP\Operación_en_bolsa\obj\Debug\net8.0\Operación_en_bolsa.sourcelink.json

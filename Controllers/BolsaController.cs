@@ -20,6 +20,11 @@ namespace Operación_en_bolsa.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Registro()
+        {
+            return View("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

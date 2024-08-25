@@ -1,3 +1,11 @@
+@model Operación_en_bolsa.Models.Usuario;
 @{
     ViewData["Title"]="Titulo_Pagina_Web";
 }
+<div>@ViewData["Title"]</div>
+<div class="col-md-6">
+    <form asp-controller="Bolsa" asp-action="Registro" method="post">
+        <label asp-for="Nombre" class="control-label">Nombre:</label>
+        <input asp-for="Nombre" class="form-control"/>
+    </form>
+</div>
