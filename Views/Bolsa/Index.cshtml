@@ -1,11 +1,91 @@
 @model Operación_en_bolsa.Models.Usuario;
 @{
-    ViewData["Title"]="Titulo_Pagina_Web";
+    ViewBag.Title="Registrar Inversión";
+    var lista=ViewData["lista"]as List<string>;
+    var user=ViewData["usuario"]as Usuario;
 }
-<div>@ViewData["Title"]</div>
-<div class="col-md-6">
-    <form asp-controller="Bolsa" asp-action="Registro" method="post">
-        <label asp-for="Nombre" class="control-label">Nombre:</label>
-        <input asp-for="Nombre" class="form-control"/>
-    </form>
+<div class="container">
+    <h1 align="center">@ViewData["Title"]</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Bolsa" asp-action="Registro" method="post">
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label">Nombre:</label>
+                    <input asp-for="Nombre" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label asp-for="Apellido" class="control-label">Apellido:</label>
+                    <input asp-for="Apellido" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Correo  Electronico:</label>
+                    <input asp-for="Email" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label asp-for="Fecha" class="control-label">Fecha:</label>
+                    <input asp-for="Fecha" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label">Intrumentos:</label>
+                    <br>
+                    @foreach (var item in Model.Instrumentos)
+                    {
+                        <div>
+                            <input type="checkbox" name="InstrumentosSeleccionados" value="@item" id="@item" @(Model.InstrumentosSeleccionados.Contains(item) ? "checked" : "") />
+                            <label for="@item">@item</label>
+                        </div>
+                    }
+                     <span asp-validation-for="InstrumentosSeleccionados" class="text-danger"></span>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label asp-for="Monto" class="control-label">Monto a invertir:</label>
+                    <input asp-for="Monto" type="number" required class="form-control"/>
+                </div>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div  class="row justify-content-center">
+        @if(lista!=null){
+            <table class="table table-striped table-bordered table-haver">
+                <thead>
+                    <tr>
+                        <th>Instrumento</th>
+                        <th>Inversión</th>
+                        <th>Fecha</th>
+                        <th>IGV</th>
+                        <th>Monto</th>
+                    </tr>
+                </thead>
+                @if(lista!=null){
+                    <tbody>
+                        @foreach(string c in lista){
+                            <tr>
+                                <td>@c</td>
+                                <td>@user.CalcularInversion()</td>
+                                <td>@user.Fecha</td>
+                                <td>@user.CalcularIGV()</td>
+                                <td>@user.CalcularMonto()</td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        }
+        
+        @if(user!=null){
+            <div>
+                <h3>La comisión es de: @user.CalcularComision()$</h3>
+                <h3>El Monto total a pagar es de: @user.CalcularMontoTotal()$</h3>
+        
+            </div>
+        }
+    </div>
 </div>
